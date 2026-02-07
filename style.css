@@ -1,0 +1,243 @@
+/* --- Fonts & Imports --- */
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("heart-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    font-family: "Pixelify Sans", sans-serif;
+    overflow: hidden; 
+}
+
+/* --- Envelope Screen --- */
+#envelope-container {
+    text-align: center;
+    cursor: pointer;
+}
+
+#envelope-container p {
+    font-size: 32px;
+    color: #FF6B81; 
+    text-shadow: 2px 2px 0px #ffffff;
+    margin-top: 15px;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }   
+}
+
+#envelope {
+     width: 220px;
+     animation: pulse 1.5s infinite;
+}
+
+/* --- Letter Screen Container --- */
+#letter-container {
+    display: none;
+    position: fixed;
+    inset: 0;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background-color: rgba(255, 230, 235, 0.2); 
+    backdrop-filter: blur(2px);
+}
+
+.letter-window {
+    width: 90vw;
+    max-width: 700px;
+    min-height: 550px; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
+    background-image: url("window.png");
+    background-size: 100% 100%; 
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    padding: 40px; 
+    box-sizing: border-box;
+
+    transform: scale(1.2);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
+}
+
+.letter-window.open {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* --- Typography --- */
+h1 {
+    font-size: 32px;
+    color: #5D3A37; 
+    margin: 0 0 10px 0;
+    text-shadow: 2px 2px 0px #ffffff;
+}
+
+/* --- Cat Styling --- */
+.cat {
+    width: 240px; 
+    max-width: 80%;
+    margin: 10px 0;
+}
+
+/* --- Buttons Area --- */
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    position: relative;
+    min-height: 120px; 
+    width: 100%;
+}
+
+.img-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.img-btn img {
+    width: 120px;
+    height: auto;
+    display: block;
+}
+
+.yes-btn {
+    position: relative;
+    z-index: 5;
+}
+
+/* --- Final Reward Text & Claim Button --- */
+.final-text {
+    font-size: 18px;
+    line-height: 1.4;
+    color: #5D3A37; 
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 3px solid #FFB7C5; 
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin-top: 10px;
+    max-width: 85%;
+    box-shadow: 0 4px 0px #FFB7C5; 
+}
+
+.claim-btn {
+    background: #FF6B81;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 4px 0 #D6455A;
+    transition: all 0.2s;
+}
+
+.claim-btn:hover { background: #ff8597; }
+.claim-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #D6455A; }
+
+/* --- Modal/Popup Styles (Updated for Max Boldness & Clarity) --- */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85); /* Dark background for focus */
+    z-index: 100;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.modal-box {
+    background-image: url("window.png");
+    background-size: 100% 100%;
+    width: 95vw;
+    max-width: 550px;
+    padding: 75px 55px; /* Ensures text stays inside the pixel frame */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-height: 80vh;
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content {
+    overflow-y: auto; 
+    /* Bold and feasible font settings */
+    font-size: 20px; 
+    font-weight: 700; /* Boldest weight for Pixelify Sans */
+    color: #3a1e1c;   /* Darkest feasible brown for contrast */
+    
+    /* Text Shadow helps separate text from the checkered pattern */
+    text-shadow: 1px 1px 0px rgba(255, 255, 255, 0.6); 
+    
+    line-height: 1.8; /* Room between thoughts */
+    margin-bottom: 20px;
+    padding-right: 15px;
+    text-align: left;
+    white-space: pre-line;
+}
+
+/* Custom Scrollbar for the message area */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+    background-color: #FF6B81;
+    border-radius: 10px;
+    border: 2px solid #fff;
+}
+
+#close-modal {
+    align-self: center;
+    background: #FF6B81;
+    color: white;
+    border: none;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 8px;
+    box-shadow: 0 4px 0 #D6455A;
+}
+
+/* --- Responsive for Mobile --- */
+@media (max-width: 600px) {
+    .letter-window { 
+        padding: 30px;
+        min-height: 450px;
+    }
+    h1 { font-size: 22px; }
+    .cat { width: 180px; }
+    .img-btn img { width: 90px; }
+    
+    .modal-box { padding: 60px 40px; }
+    .modal-content { 
+        font-size: 17px; 
+        line-height: 1.6; 
+    }
+}
